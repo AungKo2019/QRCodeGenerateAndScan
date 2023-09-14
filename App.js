@@ -1,20 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native'
+import React from 'react'
+import { NavigationContainer } from '@react-navigation/native';
+import 'react-native-gesture-handler';
+import { createStackNavigator } from '@react-navigation/stack';
+const Stack = createStackNavigator();
+import GenerateQR from './Screens/GenerateQR';
+import Scanner from './Screens/Scanner';
+import Home from './Screens/Home';
+import Capture from './Screens/Capture';
+// import GalleryQRScan from './Screens/GalleryQRScan'
 
-export default function App() {
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <NavigationContainer>
+      <Stack.Navigator >
+        <Stack.Screen name="Home" component={Home}  options={{headerStyle: {backgroundColor: '#8ECDDD'} }}/>
+        <Stack.Screen name="GenerateQR" component={GenerateQR} options={{headerStyle: {backgroundColor: '#4F709C'} }}/>
+        <Stack.Screen name="Scanner" component={Scanner} options={{headerStyle: {backgroundColor: '#EDB7ED'} }}/>
+        <Stack.Screen name="Capture" component={Capture} options={{headerStyle: {backgroundColor: '#D2DE32'} }}/>
+        {/* <Stack.Screen name="GalleryQRScan" component={GalleryQRScan} options={{headerStyle: {backgroundColor: '#BEADFA'} }}/> */}
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App
